@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="dms.controllers.MainController"
+      styleClass="root">
+
+    <!-- ══ Custom Title Bar ══ -->
+    <HBox fx:id="titleBar" styleClass="title-bar" alignment="CENTER_LEFT">
+        <Label text="  Donation Management System" styleClass="title-app-name"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnMin"  text="—" styleClass="win-btn"          onAction="#minimize"/>
+        <Button fx:id="btnMax"  text="▭" styleClass="win-btn"          onAction="#toggleMax"/>
+        <Button fx:id="btnExit" text="✕" styleClass="win-btn,win-close" onAction="#closeApp"/>
+    </HBox>
+
+    <!-- ══ Body: Sidebar + Content ══ -->
+    <HBox VBox.vgrow="ALWAYS">
+
+        <!-- ── Sidebar ──────────────────────────────────────── -->
+        <VBox styleClass="sidebar" spacing="2">
+            <padding><Insets top="4" right="10" bottom="16" left="10"/></padding>
+
+            <Label text="DMS" styleClass="sidebar-logo"/>
+            <Label text="Donation Management System" styleClass="sidebar-subtitle"/>
+
+            <Label text="MAIN MENU" styleClass="nav-section-label"/>
+
+            <Button fx:id="btnDashboard"    text="⬡  Dashboard"       maxWidth="Infinity"
+                    styleClass="nav-btn,nav-btn-active" onAction="#navDashboard"/>
+            <Button fx:id="btnDonors"       text="👤  Donors"          maxWidth="Infinity"
+                    styleClass="nav-btn" onAction="#navDonors"/>
+            <Button fx:id="btnCauses"       text="🎯  Causes"          maxWidth="Infinity"
+                    styleClass="nav-btn" onAction="#navCauses"/>
+            <Button fx:id="btnNewDonation"  text="＋  New Donation"    maxWidth="Infinity"
+                    styleClass="nav-btn" onAction="#navNewDonation"/>
+
+            <Label text="REPORTS" styleClass="nav-section-label"/>
+
+            <Button fx:id="btnSchedules"    text="🔄  Schedules"       maxWidth="Infinity"
+                    styleClass="nav-btn" onAction="#navSchedules"/>
+            <Button fx:id="btnImpact"       text="📄  Impact Reports"  maxWidth="Infinity"
+                    styleClass="nav-btn" onAction="#navImpact"/>
+            <Button fx:id="btnAnalytics"    text="📊  Analytics"       maxWidth="Infinity"
+                    styleClass="nav-btn" onAction="#navAnalytics"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Version footer -->
+            <Label text="v1.0  ·  DB Systems Project"
+                   style="-fx-font-size:10px; -fx-text-fill:#475569; -fx-padding: 0 0 4 6;"/>
+        </VBox>
+
+        <!-- ── Content Area ─────────────────────────────────── -->
+        <StackPane fx:id="contentArea" HBox.hgrow="ALWAYS" styleClass="content-bg"/>
+
+    </HBox>
+</VBox>

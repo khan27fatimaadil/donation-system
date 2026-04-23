@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="dms.controllers.DashboardController"
+      styleClass="content-bg">
+
+    <!-- Header -->
+    <VBox styleClass="content-header">
+        <Label text="Dashboard" styleClass="page-title"/>
+        <Label text="Welcome to the Donation Management System" styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Stat Cards Row -->
+    <HBox spacing="16">
+        <padding><Insets top="24" right="24" bottom="16" left="24"/></padding>
+        <VBox styleClass="stat-card" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblTotalDonors" text="0" styleClass="stat-value" style="-fx-text-fill: #2f81f7;"/>
+            <Label text="Total Donors" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblActiveCauses" text="0" styleClass="stat-value" style="-fx-text-fill: #3fb950;"/>
+            <Label text="Active Causes" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblTotalRaised" text="PKR 0" styleClass="stat-value" style="-fx-text-fill: #d29922; -fx-font-size: 20px;"/>
+            <Label text="Total Raised" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblTotalDonations" text="0" styleClass="stat-value" style="-fx-text-fill: #a371f7;"/>
+            <Label text="Total Donations" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <!-- Recent Donations Table -->
+    <VBox VBox.vgrow="ALWAYS">
+        <padding><Insets top="8" right="24" bottom="24" left="24"/></padding>
+        <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="10">
+            <Label text="Recent Donations" styleClass="section-label"/>
+            <TableView fx:id="recentTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colRDonor"  text="Donor"       prefWidth="180"/>
+                    <TableColumn fx:id="colRAmount"  text="Amount"      prefWidth="130"/>
+                    <TableColumn fx:id="colRCause"   text="Cause"       prefWidth="200"/>
+                    <TableColumn fx:id="colRDate"    text="Date"        prefWidth="120"/>
+                    <TableColumn fx:id="colRStatus"  text="Status"      prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+
+</VBox>

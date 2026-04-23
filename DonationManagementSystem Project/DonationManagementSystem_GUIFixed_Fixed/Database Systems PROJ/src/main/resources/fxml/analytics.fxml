@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="dms.controllers.AnalyticsController"
+      styleClass="content-bg">
+
+    <VBox styleClass="content-header">
+        <HBox alignment="CENTER_LEFT">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Analytics" styleClass="page-title"/>
+                <Label text="Live data summaries from the database" styleClass="page-subtitle"/>
+            </VBox>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="⎙  Print Report" onAction="#handlePrint" styleClass="btn-secondary"/>
+                <Button text="↻  Refresh" onAction="#refreshData" styleClass="btn-accent"/>
+            </HBox>
+        </HBox>
+    </VBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <content>
+            <VBox fx:id="printableArea" spacing="20">
+                <padding><Insets top="20" right="24" bottom="24" left="24"/></padding>
+
+                <HBox spacing="16" alignment="CENTER">
+                    <VBox styleClass="card" spacing="10" HBox.hgrow="ALWAYS" minWidth="400">
+                        <Label text="📅  Monthly Donations (This Year)" styleClass="section-label"/>
+                        <BarChart fx:id="monthlyBarChart" prefHeight="300" animated="false"
+                                  legendVisible="false" verticalGridLinesVisible="false"
+                                  style="-fx-background-color: transparent;">
+                            <xAxis><CategoryAxis label="Month" tickLabelGap="5"/></xAxis>
+                            <yAxis><NumberAxis label="PKR" autoRanging="true"/></yAxis>
+                        </BarChart>
+                    </VBox>
+                    
+                    <VBox styleClass="card" spacing="10" HBox.hgrow="ALWAYS" minWidth="400">
+                        <Label text="🥧  Fundraising by Campaign" styleClass="section-label"/>
+                        <PieChart fx:id="causePieChart" prefHeight="300" animated="false"
+                                  labelsVisible="true" legendSide="RIGHT"
+                                  style="-fx-background-color: transparent;"/>
+                    </VBox>
+                </HBox>
+
+                <VBox styleClass="card" spacing="10">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="🏆  Top Donors by Total Contribution" styleClass="section-label" HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblDonorCount" style="-fx-font-size:11px; -fx-text-fill:#64748b;"/>
+                    </HBox>
+                    <TableView fx:id="donorTable" prefHeight="200">
+                        <placeholder><Label text="No donation data yet."/></placeholder>
+                        <columns>
+                            <TableColumn fx:id="colDName"   text="Donor Name"         prefWidth="240"/>
+                            <TableColumn fx:id="colDTotal"  text="Total Donated (PKR)" prefWidth="180"/>
+                            <TableColumn fx:id="colDCauses" text="Donations Made"      prefWidth="140"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox styleClass="card" spacing="10">
+                    <Label text="📊  Campaign Fundraising Progress" styleClass="section-label"/>
+                    <TableView fx:id="causeTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="colCTitle"    text="Campaign"     prefWidth="200"/>
+                            <TableColumn fx:id="colCGoal"     text="Goal (PKR)"   prefWidth="130"/>
+                            <TableColumn fx:id="colCRaised"   text="Raised (PKR)" prefWidth="130"/>
+                            <TableColumn fx:id="colCPct"      text="Analytics"    prefWidth="100"/>
+                            <TableColumn fx:id="colCProgress" text="Progress Bar" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox styleClass="card" spacing="10">
+                    <Label text="🔄  Upcoming Recurring Donations" styleClass="section-label"/>
+                    <TableView fx:id="recurTable" prefHeight="180">
+                        <placeholder><Label text="No upcoming recurring donations scheduled."/></placeholder>
+                        <columns>
+                            <TableColumn fx:id="colRDonor" text="Donor"     prefWidth="200"/>
+                            <TableColumn fx:id="colRCause" text="Campaign"  prefWidth="200"/>
+                            <TableColumn fx:id="colRFreq"  text="Frequency" prefWidth="120"/>
+                            <TableColumn fx:id="colRDue"   text="Next Due"  prefWidth="130"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+            </VBox>
+        </content>
+    </ScrollPane>
+</VBox>

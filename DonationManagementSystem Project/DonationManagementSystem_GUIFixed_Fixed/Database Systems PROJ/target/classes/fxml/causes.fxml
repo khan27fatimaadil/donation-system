@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="dms.controllers.CausesController"
+      styleClass="content-bg">
+
+    <!-- Header -->
+    <VBox styleClass="content-header">
+        <Label text="Causes" styleClass="page-title"/>
+        <Label text="Track fundraising goals and progress" styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Toolbar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <padding><Insets top="16" right="24" bottom="12" left="24"/></padding>
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Button text="Add Cause" onAction="#openAddDialog" styleClass="btn-primary"/>
+        <Button text="Edit"      onAction="#openEditDialog" styleClass="btn-warning"/>
+        
+        <Button text="Allocate Fund" onAction="#allocateFund" styleClass="btn-accent"/>
+        
+        <Button text="Delete"    onAction="#deleteCause"    styleClass="btn-danger"/>
+    </HBox>
+
+    <!-- Table -->
+    <VBox VBox.vgrow="ALWAYS">
+        <padding><Insets top="0" right="24" bottom="24" left="24"/></padding>
+        <TableView fx:id="causeTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colTitle"   text="Title"         prefWidth="200"/>
+                <TableColumn fx:id="colGoal"    text="Goal Amount"   prefWidth="130"/>
+                <TableColumn fx:id="colRaised"  text="Raised Amount" prefWidth="130"/>
+                <TableColumn fx:id="colStatus"  text="Status"        prefWidth="100"/>
+                <TableColumn fx:id="colPercent" text="Complete"      prefWidth="110"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>
